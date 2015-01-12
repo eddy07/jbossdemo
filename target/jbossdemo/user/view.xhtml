@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{userBean.id}'/>
+        <f:event type="preRenderView" listener='#{userBean.retrieve}'/>
+    </f:metadata>
+ 
+    <ui:param name="pageTitle" value="View User"/>
+
+    <ui:define name="header">
+        User
+    </ui:define>
+
+    <ui:define name="subheader">
+        View existing User
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:panelGrid columnClasses="label,component,required" columns="3">
+            <h:outputLabel for="userBeanUserFullName" value="Full Name:"/>
+            <h:outputText id="userBeanUserFullName" value="#{userBean.user.fullName}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserPhoneNumber" value="Phone Number:"/>
+            <h:outputText id="userBeanUserPhoneNumber" value="#{userBean.user.phoneNumber}"/>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserBirthDate" value="Birth Date:"/>
+            <h:outputText id="userBeanUserBirthDate" value="#{userBean.user.birthDate}">
+                <f:convertDateTime type="date"/>
+            </h:outputText>
+            <h:outputText/>
+            <h:outputLabel for="userBeanUserUnits" value="Units:"/>
+            <h:outputText id="userBeanUserUnits" value="#{userBean.user.units}"/>
+            <h:outputText/>
+        </h:panelGrid>
+
+
+        <div class="buttons">
+            <h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+            <h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+            <h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+        </div>
+    </ui:define>
+
+</ui:composition>
